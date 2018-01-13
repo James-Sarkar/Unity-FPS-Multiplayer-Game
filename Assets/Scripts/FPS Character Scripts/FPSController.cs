@@ -18,6 +18,8 @@ public class FPSController : MonoBehaviour {
 
 	private CharacterController charController;
 
+	private FPSPlayerAnimations playerAnimations;
+
 	// Use this for initialization
 	void Start () {
 		firstPersonView = transform.Find ("FPS View").transform;
@@ -33,6 +35,8 @@ public class FPSController : MonoBehaviour {
 		defaultControllerHeight = charController.height;
 
 		defaultCamPos = firstPersonView.localPosition;
+
+		playerAnimations = GetComponent<FPSPlayerAnimations> ();
 	}
 	
 	// Update is called once per frame
@@ -76,13 +80,13 @@ public class FPSController : MonoBehaviour {
 
 		if (isGrounded) {
 			// Call crouch and sprint
-			PlayerCrouchingAndSprinting ();
+			CrouchAndSprint ();
 
 			moveDirection = new Vector3 (inputX * inputModifyFactor, -antiBumpFactor, inputY * inputModifyFactor);
 			moveDirection = transform.TransformDirection (moveDirection) * speed;
 
 			// Call jump
-			PlayerJump ();
+			Jump ();
 		}
 
 		// Apply Gravity
@@ -91,9 +95,11 @@ public class FPSController : MonoBehaviour {
 		isGrounded = (charController.Move (moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
 
 		isMoving = charController.velocity.magnitude > 0.15f;
+
+		HandleAnimations ();
 	}
 
-	void PlayerCrouchingAndSprinting () {
+	void CrouchAndSprint () {
 		if (Input.GetKeyDown(KeyCode.C)) {
 			
 			if (!isCrouching) {
@@ -117,6 +123,8 @@ public class FPSController : MonoBehaviour {
 				speed = walkSpeed;
 			}
 		}
+
+		playerAnimations.PlayerCrouch (isCrouching);
 	}
 
 	bool CanGetUp () {
@@ -148,13 +156,15 @@ public class FPSController : MonoBehaviour {
 		}
 	}
 
-	void PlayerJump () {
+	void Jump () {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 
 			if (isCrouching) {
 				// Get up
 				if (CanGetUp ()) {
 					isCrouching = false;
+
+					playerAnimations.PlayerCrouch (isCrouching);
 
 					StopCoroutine (MoveCameraWhenCrouching ());
 					StartCoroutine (MoveCameraWhenCrouching ());
@@ -163,6 +173,15 @@ public class FPSController : MonoBehaviour {
 				// Jump
 				moveDirection.y = jumpSpeed;
 			}
+		}
+	}
+
+	void HandleAnimations () {
+		playerAnimations.Movement (charController.velocity.magnitude);
+		playerAnimations.PlayerJump (charController.velocity.y);
+
+		if (isCrouching && charController.velocity.magnitude > 0f) {
+			playerAnimations.PlayerCrouchWalk (charController.velocity.magnitude);
 		}
 	}
 }

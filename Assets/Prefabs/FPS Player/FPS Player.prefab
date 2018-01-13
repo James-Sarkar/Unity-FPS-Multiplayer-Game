@@ -673,6 +673,7 @@ GameObject:
   - component: {fileID: 143143351145006458}
   - component: {fileID: 114027630304736208}
   - component: {fileID: 114131425271745152}
+  - component: {fileID: 114094821565083868}
   m_Layer: 0
   m_Name: FPS Player
   m_TagString: Untagged
@@ -1927,7 +1928,7 @@ Animator:
   m_GameObject: {fileID: 1702343093729016}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f3aa36c2aed114223bc6a264d9f9018c, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b7a6e4ba5e63c45799b75443f02c26c3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1954,6 +1955,17 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &114094821565083868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1702343093729016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d366bedf205437c90b91c3a87a63fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114120444169549846
 MonoBehaviour:
   m_ObjectHideFlags: 1

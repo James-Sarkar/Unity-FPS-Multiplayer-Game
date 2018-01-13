@@ -15,6 +15,7 @@ public class FPSMouseLook : MonoBehaviour {
 
 	private Quaternion originalRotation;
 
+	// Use this for initialization
 	void Start () {
 		originalRotation = transform.rotation;
 	}
