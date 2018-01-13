@@ -6,11 +6,13 @@ public class FPSController : MonoBehaviour {
 
 	public float walkSpeed = 6.75f, runSpeed = 10f, crouchSpeed = 4f, jumpSpeed = 8f, gravity = 20f;
 
+	public LayerMask groundLayer;
+
 	private Transform firstPersonView, firstPersonCamera;
 
-	private Vector3 firstPersonViewRotation = Vector3.zero, moveDirection = Vector3.zero;
+	private Vector3 firstPersonViewRotation = Vector3.zero, moveDirection = Vector3.zero, defaultCamPos;
 
-	private float speed, inputX, inputY, inputXSet, inputYSet, inputModifyFactor, antiBumpFactor = 0.75f;
+	private float speed, inputX, inputY, inputXSet, inputYSet, inputModifyFactor, antiBumpFactor = 0.75f, rayDistance, defaultControllerHeight, camHeight;
 
 	private bool isMoving, isGrounded, isCrouching, limitDiagonalSpeed = true;
 
@@ -19,9 +21,18 @@ public class FPSController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		firstPersonView = transform.Find ("FPS View").transform;
+
 		charController = GetComponent<CharacterController> ();
+
 		speed = walkSpeed;
+
 		isMoving = false;
+
+		rayDistance = charController.height * 0.5f + charController.radius;
+
+		defaultControllerHeight = charController.height;
+
+		defaultCamPos = firstPersonView.localPosition;
 	}
 	
 	// Update is called once per frame
@@ -29,7 +40,7 @@ public class FPSController : MonoBehaviour {
 		PlayerMovement ();
 	}
 
-	void PlayerMovement() {
+	void PlayerMovement () {
 		// Move forwards or backwards
 		if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.S)) {
 			if (Input.GetKey (KeyCode.W)) {
@@ -64,8 +75,14 @@ public class FPSController : MonoBehaviour {
 		firstPersonView.localEulerAngles = firstPersonViewRotation;
 
 		if (isGrounded) {
+			// Call crouch and sprint
+			PlayerCrouchingAndSprinting ();
+
 			moveDirection = new Vector3 (inputX * inputModifyFactor, -antiBumpFactor, inputY * inputModifyFactor);
 			moveDirection = transform.TransformDirection (moveDirection) * speed;
+
+			// Call jump
+			PlayerJump ();
 		}
 
 		// Apply Gravity
@@ -74,5 +91,78 @@ public class FPSController : MonoBehaviour {
 		isGrounded = (charController.Move (moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
 
 		isMoving = charController.velocity.magnitude > 0.15f;
+	}
+
+	void PlayerCrouchingAndSprinting () {
+		if (Input.GetKeyDown(KeyCode.C)) {
+			
+			if (!isCrouching) {
+				isCrouching = true;
+			} else {
+				if (CanGetUp ()) {
+					isCrouching = false;
+				}
+			}
+
+			StopCoroutine (MoveCameraWhenCrouching ());
+			StartCoroutine (MoveCameraWhenCrouching ());
+		}
+
+		if (isCrouching) {
+			speed = crouchSpeed;
+		} else {
+			if (Input.GetKey (KeyCode.LeftShift)) {
+				speed = runSpeed;
+			} else {
+				speed = walkSpeed;
+			}
+		}
+	}
+
+	bool CanGetUp () {
+		Ray groundRay = new Ray (transform.position, transform.up);
+
+		RaycastHit groundHit;
+
+		if (Physics.SphereCast (groundRay, charController.radius + 0.05f, out groundHit, rayDistance, groundLayer)) {
+		
+			if (Vector3.Distance (transform.position, groundHit.point) < 2.3f) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	IEnumerator MoveCameraWhenCrouching () {
+		charController.height = isCrouching ? defaultControllerHeight / 1.5f : defaultControllerHeight;
+		charController.center = new Vector3 (0f, charController.height / 2f, 0f);
+
+		camHeight = isCrouching ? defaultCamPos.y / 1.5f : defaultCamPos.y;
+
+		while (Mathf.Abs(camHeight - firstPersonView.localPosition.y) > 0.01f) {
+			firstPersonView.localPosition = Vector3.Lerp (firstPersonView.localPosition, 
+				new Vector3(defaultCamPos.x, camHeight, defaultCamPos.z), 
+				Time.deltaTime * 11f);
+
+			yield return null;
+		}
+	}
+
+	void PlayerJump () {
+		if (Input.GetKeyDown (KeyCode.Space)) {
+
+			if (isCrouching) {
+				// Get up
+				if (CanGetUp ()) {
+					isCrouching = false;
+
+					StopCoroutine (MoveCameraWhenCrouching ());
+					StartCoroutine (MoveCameraWhenCrouching ());
+				}
+			} else {
+				// Jump
+				moveDirection.y = jumpSpeed;
+			}
+		}
 	}
 }

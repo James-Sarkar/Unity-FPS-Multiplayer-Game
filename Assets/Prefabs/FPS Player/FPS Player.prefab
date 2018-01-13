@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 20441656384338162}
   - component: {fileID: 124395907965687176}
   - component: {fileID: 81231241506004910}
+  - component: {fileID: 114120444169549846}
   m_Layer: 0
   m_Name: FPS Camera
   m_TagString: MainCamera
@@ -670,6 +671,8 @@ GameObject:
   - component: {fileID: 4298862092813390}
   - component: {fileID: 95262506985313584}
   - component: {fileID: 143143351145006458}
+  - component: {fileID: 114027630304736208}
+  - component: {fileID: 114131425271745152}
   m_Layer: 0
   m_Name: FPS Player
   m_TagString: Untagged
@@ -1932,6 +1935,49 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114027630304736208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1702343093729016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634f20a5f2cb641e3add58e3aec89b45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 6.75
+  runSpeed: 10
+  crouchSpeed: 4
+  jumpSpeed: 8
+  gravity: 20
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+--- !u!114 &114120444169549846
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1040174441915974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e5c6ba22ff64b1cb0764522700ec90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 1
+--- !u!114 &114131425271745152
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1702343093729016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e5c6ba22ff64b1cb0764522700ec90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 0
 --- !u!124 &124395907965687176
 Behaviour:
   m_ObjectHideFlags: 1
