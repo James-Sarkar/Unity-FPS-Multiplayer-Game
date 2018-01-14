@@ -12,13 +12,18 @@ public class FPSController : MonoBehaviour {
 
 	private Vector3 firstPersonViewRotation = Vector3.zero, moveDirection = Vector3.zero, defaultCamPos;
 
-	private float speed, inputX, inputY, inputXSet, inputYSet, inputModifyFactor, antiBumpFactor = 0.75f, rayDistance, defaultControllerHeight, camHeight;
+	private float speed, inputX, inputY, inputXSet, inputYSet, inputModifyFactor, antiBumpFactor = 0.75f, rayDistance, defaultControllerHeight, camHeight, fireRate = 15f, nextTimeToFire = 0f;
 
 	private bool isMoving, isGrounded, isCrouching, limitDiagonalSpeed = true;
 
 	private CharacterController charController;
 
 	private FPSPlayerAnimations playerAnimations;
+
+	[SerializeField]
+	private WeaponsManager weaponsManager;
+
+	private FPSWeapon currentWeapon;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +42,10 @@ public class FPSController : MonoBehaviour {
 		defaultCamPos = firstPersonView.localPosition;
 
 		playerAnimations = GetComponent<FPSPlayerAnimations> ();
+
+		weaponsManager.weapons [0].SetActive (true);
+
+		currentWeapon = weaponsManager.weapons [0].GetComponent<FPSWeapon> ();
 	}
 	
 	// Update is called once per frame
@@ -182,6 +191,24 @@ public class FPSController : MonoBehaviour {
 
 		if (isCrouching && charController.velocity.magnitude > 0f) {
 			playerAnimations.PlayerCrouchWalk (charController.velocity.magnitude);
+		}
+
+		// Shooting
+		if (Input.GetMouseButtonDown(0) && Time.time > nextTimeToFire) {
+			nextTimeToFire = (Time.time + 1f) / fireRate;
+
+			if (isCrouching) {
+				playerAnimations.Shoot (false);
+			} else {
+				playerAnimations.Shoot (true);
+			}
+
+			currentWeapon.Shoot ();
+		}
+
+		// Reloading
+		if (Input.GetKeyDown (KeyCode.R)) {
+			playerAnimations.ReloadGun ();
 		}
 	}
 }
