@@ -2839,8 +2839,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d366bedf205437c90b91c3a87a63fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animControllerPistol: {fileID: 0}
-  animControllerMachineGun: {fileID: 0}
+  animControllerPistol: {fileID: 9100000, guid: b7a6e4ba5e63c45799b75443f02c26c3,
+    type: 2}
+  animControllerMachineGun: {fileID: 9100000, guid: 0770a54f266a24bc7b5bd0ee2d2b4f0a,
+    type: 2}
 --- !u!114 &114120444169549846
 MonoBehaviour:
   m_ObjectHideFlags: 1
