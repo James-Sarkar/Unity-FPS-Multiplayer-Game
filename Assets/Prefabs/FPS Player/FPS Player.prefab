@@ -2984,6 +2984,7 @@ GameObject:
   - component: {fileID: 114094821565083868}
   - component: {fileID: 114317424621272042}
   - component: {fileID: 114487692979849910}
+  - component: {fileID: 114605686564034396}
   m_Layer: 0
   m_Name: FPS Player
   m_TagString: Untagged
@@ -9113,7 +9114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   concreteImpact: {fileID: 100002, guid: 2b4ffdf4a64f87d4ca3c0de925e6d343, type: 2}
-  bloodImpact: {fileID: 0}
 --- !u!114 &114488158297054598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9138,6 +9138,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootClip: {fileID: 8300000, guid: fde722301da517f429eaec7a286baea1, type: 3}
   reloadClip: {fileID: 8300000, guid: dd37bc8e9362aae4fba8007a3287374d, type: 3}
+--- !u!114 &114605686564034396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1702343093729016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 83
+    i1: 164
+    i2: 10
+    i3: 91
+    i4: 244
+    i5: 36
+    i6: 196
+    i7: 232
+    i8: 25
+    i9: 45
+    i10: 69
+    i11: 93
+    i12: 183
+    i13: 179
+    i14: 138
+    i15: 74
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114756227332691118
 MonoBehaviour:
   m_ObjectHideFlags: 1
