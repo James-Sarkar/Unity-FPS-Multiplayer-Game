@@ -1,14 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class FPSController : MonoBehaviour {
+public class FPSController : NetworkBehaviour {
 
 	public float walkSpeed = 6.75f, runSpeed = 10f, crouchSpeed = 4f, jumpSpeed = 8f, gravity = 20f;
+
+	public GameObject playerHolder, weaponsHolder;
+
+	public GameObject[] weaponsFPS;
+
+	public FPSMouseLook[] mouseLook;
 
 	public LayerMask groundLayer;
 
 	private Transform firstPersonView, firstPersonCamera;
+
+	private Camera mainCam;
 
 	private Vector3 firstPersonViewRotation = Vector3.zero, moveDirection = Vector3.zero, defaultCamPos;
 
@@ -52,10 +61,64 @@ public class FPSController : MonoBehaviour {
 		handsWeaponsManager.weapons [0].SetActive (true);
 
 		currentHandsWeapon = handsWeaponsManager.weapons [0].GetComponent<FPSHandsWeapon> ();
+
+		// Change the view based on whether or not the current player
+		// is a local player or a remote player
+		if (isLocalPlayer) {
+			playerHolder.layer = LayerMask.NameToLayer ("Player");
+
+			foreach (Transform child in playerHolder.transform) {
+				child.gameObject.layer = LayerMask.NameToLayer ("Player");
+			}
+
+			for (int i = 0; i < weaponsFPS.Length; i++) {
+				weaponsFPS [i].layer = LayerMask.NameToLayer ("Player");
+			}
+
+			weaponsHolder.layer = LayerMask.NameToLayer ("Enemy");
+
+			foreach (Transform child in weaponsHolder.transform) {
+				child.gameObject.layer = LayerMask.NameToLayer ("Enemy");
+			}
+		} else {
+			playerHolder.layer = LayerMask.NameToLayer ("Enemy");
+
+			foreach (Transform child in playerHolder.transform) {
+				child.gameObject.layer = LayerMask.NameToLayer ("Enemy");
+			}
+
+			for (int i = 0; i < weaponsFPS.Length; i++) {
+				weaponsFPS [i].layer = LayerMask.NameToLayer ("Enemy");
+			}
+
+			weaponsHolder.layer = LayerMask.NameToLayer ("Player");
+
+			foreach (Transform child in weaponsHolder.transform) {
+				child.gameObject.layer = LayerMask.NameToLayer ("Player");
+			}
+		}
+
+		if (!isLocalPlayer) {
+			for (int i = 0; i < mouseLook.Length; i++) {
+				mouseLook [i].enabled = false;
+			}
+		}
+
+		mainCam = transform.Find ("FPS View").Find ("FPS Camera").GetComponent<Camera> ();
+		mainCam.gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		// Move the local player only and change camera for local player
+		if (!isLocalPlayer) {
+			return;
+		} else {
+			if (!mainCam.gameObject.activeInHierarchy) {
+				mainCam.gameObject.SetActive (true);
+			}
+		}
+
 		PlayerMovement ();
 
 		SelectWeapon ();
