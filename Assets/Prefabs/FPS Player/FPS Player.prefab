@@ -3012,12 +3012,13 @@ GameObject:
   - component: {fileID: 114131425271745152}
   - component: {fileID: 114094821565083868}
   - component: {fileID: 114487692979849910}
+  - component: {fileID: 114030721539955026}
   - component: {fileID: 114605686564034396}
   - component: {fileID: 114188946088180552}
   - component: {fileID: 114677485189239000}
   m_Layer: 0
   m_Name: FPS Player
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9104,6 +9105,18 @@ MonoBehaviour:
     m_Bits: 1
   weaponsManager: {fileID: 114756227332691118}
   handsWeaponsManager: {fileID: 114847541924094662}
+--- !u!114 &114030721539955026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1702343093729016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1c014cb3269499f979e6ffab385b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!114 &114038838403515610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9187,6 +9200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   concreteImpact: {fileID: 100002, guid: 2b4ffdf4a64f87d4ca3c0de925e6d343, type: 2}
+  bloodImpact: {fileID: 100006, guid: cb771650f86a58a46ab01616eef4650c, type: 2}
 --- !u!114 &114488158297054598
 MonoBehaviour:
   m_ObjectHideFlags: 1

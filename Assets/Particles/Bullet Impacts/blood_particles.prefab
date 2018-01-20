@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 400006}
   - component: {fileID: 11482216}
   - component: {fileID: 8290992}
+  - component: {fileID: 114705877680003604}
   m_Layer: 0
   m_Name: blood_particles
   m_TagString: Untagged
@@ -535,7 +536,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -547,7 +548,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -559,7 +560,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!1002 &11400001
 EditorExtensionImpl:
   serializedVersion: 6
@@ -621,3 +622,15 @@ Prefab:
 --- !u!1002 &100100001
 EditorExtensionImpl:
   serializedVersion: 6
+--- !u!114 &114705877680003604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34f8299a77554e3385d5bc67987cd58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0.3

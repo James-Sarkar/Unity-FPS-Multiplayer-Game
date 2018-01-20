@@ -107,7 +107,11 @@ public class FPSController : NetworkBehaviour {
 		mainCam = transform.Find ("FPS View").Find ("FPS Camera").GetComponent<Camera> ();
 		mainCam.gameObject.SetActive (false);
 	}
-	
+
+	public override void OnStartLocalPlayer () {
+		tag = "Player";
+	}
+
 	// Update is called once per frame
 	void Update () {
 		// Move the local player only and change camera for local playera
