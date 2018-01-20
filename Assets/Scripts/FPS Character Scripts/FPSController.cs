@@ -110,7 +110,7 @@ public class FPSController : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// Move the local player only and change camera for local player
+		// Move the local player only and change camera for local playera
 		if (!isLocalPlayer) {
 			return;
 		} else {

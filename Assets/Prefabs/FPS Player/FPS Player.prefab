@@ -2632,7 +2632,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1618108861599236
 GameObject:
   m_ObjectHideFlags: 1
@@ -2829,7 +2829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1669345492760662
 GameObject:
   m_ObjectHideFlags: 1
@@ -3011,10 +3011,10 @@ GameObject:
   - component: {fileID: 114027630304736208}
   - component: {fileID: 114131425271745152}
   - component: {fileID: 114094821565083868}
-  - component: {fileID: 114317424621272042}
   - component: {fileID: 114487692979849910}
   - component: {fileID: 114605686564034396}
   - component: {fileID: 114188946088180552}
+  - component: {fileID: 114677485189239000}
   m_Layer: 0
   m_Name: FPS Player
   m_TagString: Untagged
@@ -9175,17 +9175,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &114317424621272042
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1702343093729016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 331c0b69dd38f4b64a648afd9bbedfb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114487692979849910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9254,6 +9243,25 @@ MonoBehaviour:
     i15: 74
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114677485189239000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1702343093729016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95262506985313584}
+  m_ParameterSendBits: 127
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114756227332691118
 MonoBehaviour:
   m_ObjectHideFlags: 1

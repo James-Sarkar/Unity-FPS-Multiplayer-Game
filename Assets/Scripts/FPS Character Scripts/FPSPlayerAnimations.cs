@@ -11,8 +11,11 @@ public class FPSPlayerAnimations : NetworkBehaviour {
 
 	private string MOVE = "Move", VELOCITY_Y = "VelocityY", CROUCH = "Crouch", CROUCH_WALK = "CrouchWalk", STAND_SHOOT = "StandShoot", CROUCH_SHOOT = "CrouchShoot", RELOAD = "Reload";
 
+	private NetworkAnimator networkAnim;
 	void Awake () {
 		anim = GetComponent<Animator> ();
+
+		networkAnim = GetComponent<NetworkAnimator> ();
 	}
 
 	public void Movement(float magnitude) {
@@ -34,13 +37,19 @@ public class FPSPlayerAnimations : NetworkBehaviour {
 	public void Shoot(bool isStanding) {
 		if (isStanding) {
 			anim.SetTrigger (STAND_SHOOT);
+
+			networkAnim.SetTrigger (STAND_SHOOT);
 		} else {
 			anim.SetTrigger (CROUCH_SHOOT);
+
+			networkAnim.SetTrigger (CROUCH_SHOOT);
 		}
 	}
 
 	public void ReloadGun() {
 		anim.SetTrigger (RELOAD);
+
+		networkAnim.SetTrigger (RELOAD);
 	}
 
 	public void ChangeController(bool isPistol) {
