@@ -3,13 +3,13 @@ A FPS multiplayer game implemented using Unity3d.
 
 Controls:
 
-W - Move Up,
-S - Move Down,
-A - Move Left,
-D - Move Right,
-TAB - Toggle cursor lock,
-Left Mouse Click - Shoot,
-C - Crouch,
-R - Reload,
-1/2/3 - Change Weapons,
-SPACE - Jump.
+W - Move Up <br />
+S - Move Down <br />
+A - Move Left <br />
+D - Move Right <br />
+TAB - Toggle cursor lock <br />
+Left Mouse Click - Shoot <br />
+C - Crouch <br />
+R - Reload <br />
+1/2/3 - Change Weapons <br />
+SPACE - Jump. <br />
