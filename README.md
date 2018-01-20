@@ -12,4 +12,4 @@ Left Mouse Click - Shoot <br />
 C - Crouch <br />
 R - Reload <br />
 1/2/3 - Change Weapons <br />
-SPACE - Jump. <br />
+SPACE - Jump <br />
