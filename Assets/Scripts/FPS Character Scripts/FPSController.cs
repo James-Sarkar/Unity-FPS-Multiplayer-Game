@@ -21,7 +21,8 @@ public class FPSController : NetworkBehaviour {
 
 	private Vector3 firstPersonViewRotation = Vector3.zero, moveDirection = Vector3.zero, defaultCamPos;
 
-	private float speed, inputX, inputY, inputXSet, inputYSet, inputModifyFactor, antiBumpFactor = 0.75f, rayDistance, defaultControllerHeight, camHeight, fireRate = 15f, nextTimeToFire = 0f;
+	private float speed, inputX, inputY, inputXSet, inputYSet, inputModifyFactor, antiBumpFactor = 0.75f, rayDistance,
+	defaultControllerHeight, camHeight, fireRate = 15f, nextTimeToFire = 0f;
 
 	private bool isMoving, isGrounded, isCrouching, limitDiagonalSpeed = true;
 
@@ -152,6 +153,7 @@ public class FPSController : NetworkBehaviour {
 		}
 
 		inputY = Mathf.Lerp (inputY, inputYSet, Time.deltaTime * 19f);
+
 		inputX = Mathf.Lerp (inputX, inputXSet, Time.deltaTime * 19f);
 
 		inputModifyFactor = Mathf.Lerp (inputModifyFactor,
@@ -195,6 +197,7 @@ public class FPSController : NetworkBehaviour {
 			}
 
 			StopCoroutine (MoveCameraWhenCrouching ());
+
 			StartCoroutine (MoveCameraWhenCrouching ());
 		}
 
@@ -217,7 +220,6 @@ public class FPSController : NetworkBehaviour {
 		RaycastHit groundHit;
 
 		if (Physics.SphereCast (groundRay, charController.radius + 0.05f, out groundHit, rayDistance, groundLayer)) {
-		
 			if (Vector3.Distance (transform.position, groundHit.point) < 2.3f) {
 				return false;
 			}
@@ -251,6 +253,7 @@ public class FPSController : NetworkBehaviour {
 					playerAnimations.PlayerCrouch (isCrouching);
 
 					StopCoroutine (MoveCameraWhenCrouching ());
+
 					StartCoroutine (MoveCameraWhenCrouching ());
 				}
 			} else {
@@ -301,6 +304,7 @@ public class FPSController : NetworkBehaviour {
 				currentHandsWeapon = null;
 
 				handsWeaponsManager.weapons [0].SetActive (true);
+
 				currentHandsWeapon = handsWeaponsManager.weapons [0].GetComponent<FPSHandsWeapon> ();
 			}
 
@@ -310,7 +314,9 @@ public class FPSController : NetworkBehaviour {
 				}
 
 				currentWeapon = null;
+
 				weaponsManager.weapons [0].SetActive (true);
+
 				currentWeapon = weaponsManager.weapons [0].GetComponent<FPSWeapon> ();
 
 				playerAnimations.ChangeController (true);
@@ -324,6 +330,7 @@ public class FPSController : NetworkBehaviour {
 				currentHandsWeapon = null;
 
 				handsWeaponsManager.weapons [1].SetActive (true);
+
 				currentHandsWeapon = handsWeaponsManager.weapons [1].GetComponent<FPSHandsWeapon> ();
 			}
 			
@@ -333,7 +340,9 @@ public class FPSController : NetworkBehaviour {
 				}
 
 				currentWeapon = null;
+
 				weaponsManager.weapons [1].SetActive (true);
+
 				currentWeapon = weaponsManager.weapons [1].GetComponent<FPSWeapon> ();
 
 				playerAnimations.ChangeController (false);
@@ -347,6 +356,7 @@ public class FPSController : NetworkBehaviour {
 				currentHandsWeapon = null;
 
 				handsWeaponsManager.weapons [2].SetActive (true);
+
 				currentHandsWeapon = handsWeaponsManager.weapons [2].GetComponent<FPSHandsWeapon> ();
 			}
 
@@ -356,7 +366,9 @@ public class FPSController : NetworkBehaviour {
 				}
 
 				currentWeapon = null;
+
 				weaponsManager.weapons [2].SetActive (true);
+
 				currentWeapon = weaponsManager.weapons [2].GetComponent<FPSWeapon> ();
 
 				playerAnimations.ChangeController (false);

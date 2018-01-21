@@ -9,7 +9,8 @@ public class FPSPlayerAnimations : NetworkBehaviour {
 
 	private Animator anim;
 
-	private string MOVE = "Move", VELOCITY_Y = "VelocityY", CROUCH = "Crouch", CROUCH_WALK = "CrouchWalk", STAND_SHOOT = "StandShoot", CROUCH_SHOOT = "CrouchShoot", RELOAD = "Reload";
+	private string MOVE = "Move", VELOCITY_Y = "VelocityY", CROUCH = "Crouch", CROUCH_WALK = "CrouchWalk", STAND_SHOOT = "StandShoot", 
+	CROUCH_SHOOT = "CrouchShoot", RELOAD = "Reload";
 
 	private NetworkAnimator networkAnim;
 	void Awake () {

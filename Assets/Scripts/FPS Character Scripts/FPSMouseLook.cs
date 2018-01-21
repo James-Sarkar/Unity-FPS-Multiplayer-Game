@@ -11,7 +11,8 @@ public class FPSMouseLook : MonoBehaviour {
 
 	public RotationAxes axes = RotationAxes.MouseY;
 
-	private float currentSensivityX = 1.5f, currentSensivityY = 1.5f, sensivityX = 1.5f, sensivityY = 1.5f, rotationX, rotationY, minimumX = -360f, maximumX = 360f, minimumY = -60f, maximumY = 60f, mouseSensivity = 1.7f;
+	private float currentSensivityX = 1.5f, currentSensivityY = 1.5f, sensivityX = 1.5f, sensivityY = 1.5f, rotationX, rotationY,
+	minimumX = -360f, maximumX = 360f, minimumY = -60f, maximumY = 60f, mouseSensivity = 1.7f;
 
 	private Quaternion originalRotation;
 
@@ -40,6 +41,7 @@ public class FPSMouseLook : MonoBehaviour {
 		}
 
 		sensivityX = currentSensivityX;
+
 		sensivityY = currentSensivityY;
 
 		if (axes == RotationAxes.MouseX) {

@@ -58,5 +58,4 @@ public class FPSHandsWeapon : MonoBehaviour {
 
 		audioManager.Play ();
 	}
-
 }

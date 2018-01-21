@@ -16,7 +16,7 @@ public class PlayerHealth : NetworkBehaviour {
 		health -= damage;
 
 		if (health <= 0f) {
-			// End game
+			// TODO: End game
 		}
 	}
 }
