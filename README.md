@@ -3,8 +3,8 @@ A FPS multiplayer game implemented using Unity3d.
 
 Controls:
 
-W - Move Up <br />
-S - Move Down <br />
+W - Move Forward <br />
+S - Move Back <br />
 A - Move Left <br />
 D - Move Right <br />
 TAB - Toggle cursor lock <br />
